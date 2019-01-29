@@ -1,0 +1,35 @@
+<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+      <md-input-container style="width: 100%">
+        <label><img src="https://img.icons8.com/material/24/000000/search.png"></label>
+        <input  ng-model="filter.search" letters-lower> 
+      </md-input-container>
+    </div>
+</md-toolbar>
+   
+  <md-table-container>
+    <table md-table ng-model="selected" md-progress="promise">
+      <thead md-head md-order="query.order" md-on-reorder="logOrder">
+        <tr md-row>
+          <th md-column md-order-by="nombre"><span>Nombre</span></th>
+          <th md-column>Editorial</th>
+          <th md-column>Autor</th>
+          <th md-column md-numeric><span>Edicion</span></th>
+          <th md-column></th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row md-select="libros" md-select-id="nombre" md-on-select="logItem" md-auto-select="options.autoSelect" ng-repeat="libro in libros.data | filter: customSearch | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit"">
+          <td md-cell>{{libro.nombre}}</td>
+          <td md-cell>{{libro.editorial}}</td>
+          <td md-cell>{{libro.autor}}</td>
+          <td md-cell>{{libro.edicion}}</td>
+          <td md-cell style="text-align: center;"><delete-component libro="libro"></delete-component></td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+   
+  <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{libros.data.length}}" md-page-select="options.pageSelector" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+
+  <add-component></add-component>

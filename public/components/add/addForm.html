@@ -1,0 +1,26 @@
+<md-content>
+    <div>
+        <form name="addBookForm">
+            <section style="width: 400px;" flex="100" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <h3>Agregar Libro</h3>
+                <md-input-container style="width: 300px; margin:0px;" flex="1">
+                    <label>Nombre</label>
+                    <input ng-model="libro.nombre" required>
+                </md-input-container>
+                <md-input-container class="md-block" style="width: 300px; margin:0px;" flex="1">
+                    <label>Editorial</label>
+                    <input ng-model="libro.editorial" required>
+                </md-input-container>
+                <md-input-container class="md-block" style="width: 300px; margin:0px;" flex="1">
+                    <label>Autor</label>
+                    <input ng-model="libro.autor" required>
+                </md-input-container>
+                <md-input-container class="md-block" style="width: 300px; margin:0px;" flex="1">
+                    <label>Edici&oacute;n</label>
+                    <input ng-model="libro.edicion" type="text" numbers-only required>
+                </md-input-container>
+                <md-button class="md-raised md-primary" style="width: 250px; height: 40px; border-radius: 25px;" ng-disabled="addBookForm.$invalid" ng-click="enviar()">Enviar</md-button>
+            </section>
+        </form>
+    </div>
+</md-content>
